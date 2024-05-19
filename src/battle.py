@@ -228,8 +228,6 @@ Level     : {using_monster['level']}
                 print(f"Selamat, Anda berhasil mengalahkan monster {data_lawan['type_monster']} !!!")
                 data["user"][user_id + 1][4] = (int(data["user"][user_id][4]) + 30)
                 print(f"Total OC yang diperoleh: {data['user'][user_id + 1][4]}")
-                using_monster['level'] += 1
-                print(f"{using_monster['type_monster']} berhasil naik ke level {using_monster['level'] + 1}")
                 print("==============================================\n")
                 data_lawan['hp'] = data_lawan['hp_normal']
                 break

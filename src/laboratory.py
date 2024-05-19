@@ -66,7 +66,9 @@ def laboratory(monsters, owca_coins):
 
 # CONTOH
 if __name__ == "__main__":
-    agent_inventory = [{'name': 'Chaca', 'level': 1}, {'name': 'Pikachow', 'level': 2}, {'name': 'Zeze', 'level': 5}]
+    agent_inventory = [{'name': 'Chaca', 'level': 1}, 
+                       {'name': 'Pikachow', 'level': 2}, 
+                       {'name': 'Zeze', 'level': 5}]
     owca_coins = 1000
 
     laboratory(agent_inventory, owca_coins)
