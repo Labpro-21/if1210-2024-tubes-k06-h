@@ -145,7 +145,7 @@ Level     : {data_lawan["level"]}
         
         print(f"""
 ==============================================
-SEMANGAT MONSTER {using_monster['type_monster']} KAMU PASTI BISA !!!
+SEMANGAT MONSTER {using_monster['type_monster']} KAMU PASTI BISA!!!
 
 Name      : {using_monster['type_monster']}
 ATK Power : {using_monster['atk_power']}
