@@ -29,10 +29,10 @@ def battle(data, user_id):
             popped_monster_idx.append(i)
             monster_id = monster_inventory[i][1]
             level = monster_inventory[i][2]
-            type_monster = monster[monster_id + 1][1]
-            atk_power = monster[monster_id + 1][2]
-            def_power = monster[monster_id + 1][3]
-            hp = monster[monster_id + 1][4]
+            type_monster = monster[monster_id][1]
+            atk_power = monster[monster_id][2]
+            def_power = monster[monster_id][3]
+            hp = monster[monster_id][4]
             user_monster_i = {
                 "monster_id" : monster_id,
                 "level" : level,
@@ -123,6 +123,7 @@ Level     : {using_monster['level']}
     lanjut = input("Klik apapun untuk lanjut: ")
 
     num = 1
+    apakah_menang = False
     used_potion = {
         "Strength Potion" : 0 ,
         "Resilience Potion" : 0,
@@ -145,7 +146,7 @@ Level     : {data_lawan["level"]}
         
         print(f"""
 ==============================================
-SEMANGAT MONSTER {using_monster['type_monster']} KAMU PASTI BISA!!!
+SEMANGAT MONSTER {using_monster['type_monster']} KAMU PASTI BISA !!!
 
 Name      : {using_monster['type_monster']}
 ATK Power : {using_monster['atk_power']}
@@ -228,10 +229,12 @@ Level     : {using_monster['level']}
                 print(f"Selamat, Anda berhasil mengalahkan monster {data_lawan['type_monster']} !!!")
                 data["user"][user_id + 1][4] = (int(data["user"][user_id][4]) + 30)
                 print(f"Total OC yang diperoleh: {data['user'][user_id + 1][4]}")
+                using_monster['level'] += 1
+                print(f"{using_monster['type_monster']} berhasil naik ke level {using_monster['level'] + 1}")
                 print("==============================================\n")
                 data_lawan['hp'] = data_lawan['hp_normal']
+                apakah_menang = True
                 break
-
 
             is_did_something = 1
         
@@ -279,5 +282,4 @@ Level     : {using_monster['level']}
     item_inventory.extend(user_item_matrixed)
     data["item_inventory"] = item_inventory
     data["monster_inventory"] = monster_inventory
-    print(item_inventory) 
-    print(monster_inventory) 
+    return apakah_menang
