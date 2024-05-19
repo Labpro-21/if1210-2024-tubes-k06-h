@@ -37,16 +37,21 @@ def load():
         # ALGORITMA
         matrix = [] # inisiasi variabel matrix
         for line in file: # looping untuk setiap baris (line) pada file
-            array = [] # inisiasi variabel array
-            data = "" # inisiasi variabel data
-            for _ in line: # looping untuk setiap character pada baris (line)
-                if _ != ";": # pengecekan, jika _ != ";" maka _ akan ditambahkan pada string data
-                    data += _
-                else: # pengecekan, jika _== ";", string data akan ditambahkan pada array, dan nilai string data direset
-                    array.append(data)
-                    data = ""
-            array.append(data) # data paling akhir belum di-append ke array karena di akhir baris tidak ada ";", maka ditambahkan manual setelah looping berakhir
-            matrix.append(array) # array ditambahkan pada matrix
+            if line == "99999":
+                pass
+            else:
+                array = [] # inisiasi variabel array
+                data = "" # inisiasi variabel data
+                for _ in line: # looping untuk setiap character pada baris (line)
+                    if _ != ";": # pengecekan, jika _ != ";" maka _ akan ditambahkan pada string data
+                        data += _
+                    else: # pengecekan, jika _== ";", string data akan ditambahkan pada array, dan nilai string data direset
+                        array.append(data)
+                        data = ""
+                data = data[:-1]
+                array.append(data) # data paling akhir belum di-append ke array karena di akhir baris tidak ada ";", maka ditambahkan manual setelah looping berakhir
+                matrix.append(array) # array ditambahkan pada matrix
+        print(matrix)
         return matrix # fungsi menghasilkan matrix
     
     # KAMUS VARIABEL
