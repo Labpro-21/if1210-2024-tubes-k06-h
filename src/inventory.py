@@ -53,6 +53,8 @@ def inventory(userinventory, yourmonsterdata, monsterdata, coin, user_idx) :
         check = input('Silakan pilih jenis item yang ingin diketahui Anda (Monster/Item/Back): ')
         if check.lower() == 'item' :
             x=1
+            idx = []
+            j = 0
             types=[]
             for i in userinventory:
                 if cek(i, user_idx):
@@ -67,33 +69,39 @@ def inventory(userinventory, yourmonsterdata, monsterdata, coin, user_idx) :
 
                     if type != "type":
                         types.append(type)
+                        idx.append(j)
                         print(f'{x}. Type: {type}')
                         x+=1
+                j += 1
 
             while True :
                 pot_Number = input('Masukkan nomor potion untuk menampilkan detail item (1/2/3/Back): ')
-                if pot_Number.lower() != 'back'and int(pot_Number) <= 3 :
+                if pot_Number.lower() != 'back' and int(pot_Number) <= 3 :
                     pot_Number = int(pot_Number)
                     print(f'Type: {types[pot_Number-1]}')
-                    print(f'Quantity: {userinventory[pot_Number][2]}')
+                    print(f'Quantity: {userinventory[idx[pot_Number - 1]][2]}')
                 else :
                     break
 
         elif check.lower() == 'monster' :
             y = 0
+            j = 0
+            idx = []
             for i in yourmonsterdata:
                 if cek(i, user_idx):
                     if i[1] != "monster_id" :
                         print(f"{y+1}. {monsterdata[int(i[1])][1]}")
+                        idx.append(j)
                         y+=1
+                j += 1
 
             while True :
                 mons_Number = input('Masukkan nomor monster untuk menampilkan detail monster (1/2/dst/Back): ')
                 if mons_Number.lower() != 'back' :
                     mons_Number = int(mons_Number)
-                    monsterlvl = int(yourmonsterdata[mons_Number][2])
+                    monsterlvl = int(yourmonsterdata[idx[mons_Number - 1]][2])
                     for i in monsterdata:
-                        if i[0]==yourmonsterdata[mons_Number][1] :
+                        if i[0]==yourmonsterdata[idx[mons_Number - 1]][1] :
                             print(f'Nama      : {i[1]}')
                             print(f'ATK Power : {int(i[2])+(monsterlvl-1)*(5/100)*(int(i[2]))}')
                             print(f'DEF Power : {int(i[3])+(monsterlvl-1)*(5/100)*(int(i[3]))}')
