@@ -1,4 +1,5 @@
 def login(user):
+    print (user)
     user_input = input("Username: ")
     pass_input = input("Password: ")
 
@@ -13,11 +14,13 @@ def login(user):
 
     if not user_valid:
         print("Username tidak terdaftar!")
-        return False
+        return False, -1
     elif user[user_idx][2] != pass_input:
         print("Password salah!")
-        return False
-    else:
+        return False, -1
+    elif user[user_idx][3] == "admin" :
+        print(f"Selamat datang, {user_input}!")
+        return True, user_idx
+    else :
         print(f"Selamat datang, Agent {user_input}!")
-        print("Masukkan command “help” untuk daftar command yang dapat kamu panggil.")
-        return True
+        return True, user_idx
