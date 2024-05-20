@@ -1,4 +1,4 @@
-def register(user):
+def register(user, item_inventory, monster_inventory):
     # PROGRAM register
 
     # SPESIFIKASI:
@@ -62,6 +62,8 @@ def register(user):
     uname = input("Masukkan username: ") # input username
     pwd = input("Masukkan password: ") # input password
 
+    monster_id = -1
+
     validUname = validasiUName(uname) # memvalidasi username
 
     if validUname: # pengecekan pertama: jika username tidak valid, user diminta registerasi ulang
@@ -69,7 +71,7 @@ def register(user):
         dataUname = [user[i][1] for i in range (1, len(user))] # inisiasi array dataUname
         if isIn(uname, dataUname): # pengecekan, menggunakan fungsi isIn(). Jika username yg akan didaftarkan sudah terdaftar sebelumnya (uname ada dalam array dataUname), maka user akan diminta registerasi ulang.
             print(f"Username {uname} sudah terpakai, silakan gunakan username lain!")
-            register(user)
+            register(user, item_inventory, monster_inventory)
         else: # jika username yang akan didaftarkan belum terdaftar sebelumnya, maka user dipersilakan memilih monster awal
             # Memilih monster awal
             print("Silakan pilih salah satu monster sebagai monster awalmu.")
@@ -80,14 +82,37 @@ def register(user):
             Mos = "" # inisiasi string Mos. Selanjutnya akan diisi dengan nama yang sesuai dengan numMos
             if numMos == 1:
                 Mos = "Charizard"
+                monster_id = 3
             elif numMos == 2:
                 Mos = "Bulbasaur"
+                monster_id = 5
             elif numMos == 3:
                 Mos = "Aspal"
+                monster_id = 17
+            while numMos != 1 and numMos != 2 and numMos != 3 :
+                print ("Monster tidak tersedia dalam pilihan.")
+                print("Silakan pilih salah satu monster sebagai monster awalmu.")
+                print("1. Charizard")
+                print("2. Bulbasaur")
+                print("3. Aspal")
+                numMos = int(input("Monster pilihanmu : ")) # Inisiasi dan input variabel numMos 
+                if numMos == 1:
+                    Mos = "Charizard"
+                    monster_id = 3
+                elif numMos == 2:
+                    Mos = "Bulbasaur"
+                    monster_id = 5
+                elif numMos == 3:
+                    Mos = "Aspal"
+                    monster_id = 17
             # ditampilkan pesan selamat datang
             print(f"Selamat datang Agent {uname}. Mari kita mengalahkan Dr. Asep Spakbor dengan {Mos}!")
             # proses menyimpan data yang sudah diinputkan ke matrix user
             user.append([str(len(dataUname) + 1), uname, pwd, "agent", "0"])
+            item_inventory.append([str(len(dataUname) + 1), 'Strength Potion', '0'])
+            item_inventory.append([str(len(dataUname) + 1), 'Resilience Potion', '0'])
+            item_inventory.append([str(len(dataUname) + 1), 'Healing Potion', '0'])
+            monster_inventory.append([str(len(dataUname) + 1), str(monster_id), '1'])
     else: # jika username tidak valid, user diminta registerasi ulang
         print("Username hanya boleh berisi alfabet, angka, underscore, dan strip!")
-        register(user)
+        register(user, item_inventory, monster_inventory)

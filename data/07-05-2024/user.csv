@@ -1,4 +1,5 @@
 id;username;password;role;oc
+0;NA;NA;NA;0
 1;bill_2231;fsdgdrgh;agent;0
 2;bill_2232;fsgxdgb;agent;0
 3;bill_2233;cvhg;agent;0
@@ -8,3 +9,9 @@ id;username;password;role;oc
 7;bill_2237;dhfghg;agent;0
 8;bill_2238;dgxfcgbd;agent;0
 9;bill_2239;fhjchcvb;agent;0
+10;yaz_2324;abcd;agent;100
+11;admin1;admin1;admin;0
+12;admin2;admin2;admin;0
+13;admin3;admin3;admin;0
+14;a;a;agent;1000
+99999

@@ -38,10 +38,11 @@ def save(data):
                     line += str(data[j][i]) # string line dikonkatenasi dengan string data[row][i]
                     if i != len_row - 1: # pengecekan, jika i += len_row - 1, maka line akan dikonkatenasi dengan ";"
                         line += ";"
+                    else:
+                        line += "\n"
                 if j == len_data - 1: # pengecekan, jika j == len_data - 1, maka string line akan dikonkatenasi dengan "\n", agar pada baris terakhir dibuat baris baru yang kosong
-                    line += "\n"
+                    line += "99999"
                 file.write(line) # line akan ditulis ke file.csv
-        
     # KAMUS VARIABEL
     # folder_name : string (menyimpan input user, menyimpan folder yang dituju untuk melakukan save)
     # folder_path : string (menyimpan path: data/folder_name)

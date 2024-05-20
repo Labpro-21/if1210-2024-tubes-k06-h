@@ -5,5 +5,5 @@ def logout(log_status):
         return True
     else:
         print("Logout berhasil!")
-        print("Silahkan login lagi jika ingin mengakses kembali program")
+        print("\nSilahkan login lagi jika ingin mengakses kembali program")
         return False
