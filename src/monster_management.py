@@ -56,6 +56,7 @@ def monster_management():
     print ()
     print("SELAMAT DATANG DI DATABASE PARA MONSTER !!!")
     print ()
+
     running = True 
     while running == True:
         print ()
@@ -131,5 +132,3 @@ def monster_management():
                 print("Monster baru telah ditambahkan!")
             elif inp2.lower() == 'n':
                 print("Monster gagal ditambahkan!")
-                
-print(monster_management())
