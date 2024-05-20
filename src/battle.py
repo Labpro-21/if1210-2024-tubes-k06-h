@@ -111,7 +111,7 @@ Level     : {data_lawan["level"]}
     using_monster = user_monster[choosen_monster_id - 1]
 
     print(f"""
-RAWRRR, {data["user"][user_id][1]} mengeluarkan monster {using_monster['type_monster']} !!!
+RAWRRR, Agent {data["user"][user_id+1][1]} mengeluarkan monster {using_monster['type_monster']} !!!
 
 Name      : {using_monster['type_monster']}
 ATK Power : {using_monster['atk_power']}
