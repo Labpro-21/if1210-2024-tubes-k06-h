@@ -37,10 +37,10 @@ def battle(data, user_id):
                 "monster_id" : monster_id,
                 "level" : level,
                 "type_monster" : type_monster,
-                "atk_power" : atk_power * ((level - 1) * 10) / 100,
-                "def_power" : def_power * ((level - 1) * 10) / 100,
-                "hp" : hp * ((level - 1) * 10) / 100,
-                "hp_normal" : hp * ((level - 1) * 10) / 100 
+                "atk_power" : atk_power * (100+(level - 1) * 10) / 100,
+                "def_power" : def_power * (100+(level - 1) * 10) / 100,
+                "hp" : hp * (100+(level - 1) * 10) / 100,
+                "hp_normal" : hp * (100+(level - 1) * 10) / 100 
             }
             user_monster.append(user_monster_i)
 
@@ -79,10 +79,10 @@ def battle(data, user_id):
         "monster_id" : monster_lawan[0],
         "level" : level_lawan,
         "type_monster" : monster_lawan[1],
-        "atk_power" : monster_lawan[2] * ((level_lawan - 1) * 10) / 100,
-        "def_power" : monster_lawan[2] * ((level_lawan - 1) * 10) / 100,
-        "hp" : monster_lawan[4] * ((level_lawan - 1) * 10) / 100,
-        "hp_normal" : monster_lawan[4] * ((level_lawan - 1) * 10) / 100  
+        "atk_power" : monster_lawan[2] * (100+(level_lawan - 1) * 10) / 100,
+        "def_power" : monster_lawan[2] * (100+(level_lawan - 1) * 10) / 100,
+        "hp" : monster_lawan[4] * (100+(level_lawan - 1) * 10) / 100,
+        "hp_normal" : monster_lawan[4] * (100+(level_lawan - 1) * 10) / 100  
     }
 
     print(f"""
@@ -109,7 +109,7 @@ Level     : {data_lawan["level"]}
     using_monster = user_monster[choosen_monster_id - 1]
 
     print(f"""
-RAWRRR, {data["user"][user_id][1]} mengeluarkan monster {using_monster['type_monster']} !!!
+RAWRRR, {data["user"][user_id+1][1]} mengeluarkan monster {using_monster['type_monster']} !!!
 
 Name      : {using_monster['type_monster']}
 ATK Power : {using_monster['atk_power']}
@@ -243,8 +243,8 @@ Level     : {using_monster['level']}
             print(f"============ TURN {num} ({data_lawan['type_monster']}) ============")
             if used_potion["Resilience Potion"] == 1:
                 random_damage = random_uniform_sample(60) - 30
-                damage = int(data_lawan['atk_power']) (100 - random_damage) / 100
-                print(f"attack yang lawanmu berikan {random_attack}% dari attack_powernya!")
+                damage = (data_lawan['atk_power'])*(100 - random_damage) / 100
+                print(f"attack yang lawanmu berikan {random_damage}% dari attack_powernya!")
                 damage = (damage * 0.8)
                 print(f"Damage berkurang 20% karena penggunaan Resilience Potion: {damage}")
                 damage = damage * (100 - using_monster['def_power']) / 100
