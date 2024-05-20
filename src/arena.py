@@ -35,10 +35,10 @@ def arena(data, user_id):
                 "monster_id" : monster_id,
                 "level" : level,
                 "type_monster" : type_monster,
-                "atk_power" : atk_power * ((level - 1) * 10) / 100,
-                "def_power" : def_power * ((level - 1) * 10) / 100,
-                "hp" : hp * ((level - 1) * 10) / 100,
-                "hp_normal" : hp * ((level - 1) * 10) / 100
+                "atk_power" : atk_power * (100 + (level - 1) * 10) / 100,
+                "def_power" : def_power * (100 + (level - 1) * 10) / 100,
+                "hp" : hp * (100 + (level - 1) * 10) / 100,
+                "hp_normal" : hp * (100 + (level - 1) * 10) / 100
             }
             user_monster.append(user_monster_i)
 
@@ -83,7 +83,7 @@ def arena(data, user_id):
     using_monster = user_monster[choosen_monster_id - 1]
 
     print(f"""
-RAWRRR, {data["user"][user_id][1]} mengeluarkan monster {using_monster['type_monster']} !!!
+RAWRRR, {data["user"][user_id+1][1]} mengeluarkan monster {using_monster['type_monster']} !!!
 
 Name      : {using_monster['type_monster']}
 ATK Power : {using_monster['atk_power']}
@@ -210,12 +210,12 @@ Level     : {data_lawan["level"]}
             if data_lawan["hp"] <= 0:
                 print("\n==============================================")
                 print(f"Selamat, Anda berhasil mengalahkan monster {data_lawan['type_monster']} !!!")
-                data["user"][user_id + 1][4] = (int(data["user"][user_id][4]) + 30)
                 print(f"STAGED CLEARED !!! Total OC yang diperoleh pada sesi ini: {data['user'][user_id + 1][4]}")
                 if stage < 5:
                     print("Memulai stage berikutnya ...")
                 if stage == 5:
                     print("Selamat, Anda berhasil menyelesaikan seluruh stage Arena !!!")
+                jumlah_hadiah += jumlah_hadiah_array[stage-1]
                 data_lawan['hp'] = data_lawan['hp_normal']
                 apakah_menang = True
                 break
@@ -257,6 +257,8 @@ Jumlah stage      : {stage}
 Damage diberikan  : {monster_lawan[2]}
 Damage diterima   : {using_monster['atk_power']}
     """)
+    data["user"][user_id + 1][4] = int(data["user"][user_id + 1][4])
+    data["user"][user_id + 1][4] += jumlah_hadiah
     user_monster.pop(choosen_monster_id - 1)
     user_monster.append(using_monster)
 
