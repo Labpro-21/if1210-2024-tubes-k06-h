@@ -51,7 +51,6 @@ def load():
                 data = data[:-1]
                 array.append(data) # data paling akhir belum di-append ke array karena di akhir baris tidak ada ";", maka ditambahkan manual setelah looping berakhir
                 matrix.append(array) # array ditambahkan pada matrix
-        print(matrix)
         return matrix # fungsi menghasilkan matrix
     
     # KAMUS VARIABEL
