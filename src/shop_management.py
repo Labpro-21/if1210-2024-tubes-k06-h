@@ -1,5 +1,5 @@
-import F02_Login
-import F14_Load 
+from login import login
+from load import load 
 
 not_monster_shop = {}
 not_item_shop = {}
@@ -7,9 +7,9 @@ exit = False
 
 # Fungsi menentukan monster yang belum ada di toko monster.
 def not_monster():
-    for id, data in F14_Load.monster.items():
+    for id, data in load.monster.items():
         ada = False
-        for idmonster, datamonster in F14_Load.monster_shop.items():
+        for idmonster, datamonster in load.monster_shop.items():
             if id == idmonster:
                 ada = True
                 break
@@ -23,9 +23,9 @@ def not_monster():
 
 # Fungsi menentukan item yang belum ada di toko item.            
 def not_item():
-    for id, data in F14_Load.item.items():
+    for id, data in load.item.items():
         ada = False
-        for iditem, dataitem in F14_Load.item_shop.items():
+        for iditem, dataitem in load.item_shop.items():
             if id == iditem:
                 ada = True
                 break
@@ -38,10 +38,10 @@ def not_item():
 def tampilkan_shop(barang):
     if barang == 'monster':
         print("\nID | TYPE | ATK POWER | DEF POWER | HP | STOK | HARGA")
-        for id, data in F14_Load.monster_shop.items():
+        for id, data in load.monster_shop.items():
             stok = data['stock']
             harga = data['price']
-            for idmonster, datamonster in F14_Load.monster.items():
+            for idmonster, datamonster in load.monster.items():
                 if idmonster == id:
                     type = datamonster['type']
                     atk_power = datamonster['atk_power']
@@ -51,7 +51,7 @@ def tampilkan_shop(barang):
 
     elif barang == 'item':
         print("\nID | TYPE | STOK | HARGA")
-        for id, data in F14_Load.item_shop.items():
+        for id, data in load.item_shop.items():
             type = data['type']
             stok = data['stock']
             harga = data['price']
@@ -60,7 +60,7 @@ def tampilkan_shop(barang):
 # PROGRAM UTAMA
 def shop_management():
     global exit
-    if F02_Login.user['user_id'] == '0':
+    if login.user['user_id'] == '0':
         aksi = input('\nPilih aksi (lihat/tambah/ubah/hapus/keluar): ')
         
         if aksi == 'lihat':
@@ -90,7 +90,7 @@ def shop_management():
                 for id, data in not_monster_shop.items():
                     if id_monster == id:
                         tambah={(id):{'stock': (stok), 'price': (harga)}}
-                        F14_Load.monster_shop.update(tambah)
+                        load.monster_shop.update(tambah)
                         print('\nITEM BERHASIL DITAMBAHKAN KE SHOP')
                         break
             
@@ -109,7 +109,7 @@ def shop_management():
                     if id_item == id:
                         type = data['type']
                         tambah = {(id):{'type': (type), 'stock': (stok), 'price': (harga)}}
-                        F14_Load.item_shop.update(tambah)
+                        load.item_shop.update(tambah)
                         print('\nITEM BERHASIL DITAMBAHKAN KE SHOP')
 
         elif aksi == 'ubah':
@@ -126,10 +126,10 @@ def shop_management():
 
                 if stok != '':
                     ubah_stok = True
-                    F14_Load.monster_shop[(id)]['stock'] = (stok)
+                    load.monster_shop[(id)]['stock'] = (stok)
                 if harga != '':
                     ubah_harga = True
-                    F14_Load.monster_shop[(id)]['price'] = (harga)
+                    load.monster_shop[(id)]['price'] = (harga)
 
                 if ubah_stok:
                     if ubah_harga:
@@ -154,10 +154,10 @@ def shop_management():
 
                 if stok != '':
                     ubah_stok = True
-                    F14_Load.item_shop[(id)]['stock'] = (stok)
+                    load.item_shop[(id)]['stock'] = (stok)
                 if harga != '':
                     ubah_harga = True
-                    F14_Load.item_shop[(id)]['price'] = (harga)
+                    load.item_shop[(id)]['price'] = (harga)
 
                 if ubah_stok:
                     if ubah_harga:
@@ -179,7 +179,7 @@ def shop_management():
                 confirm = input('Apakah anda yakin ingin menghapus Monster dari shop (y/n)? ')
                 
                 if confirm == 'y':
-                    del F14_Load.monster_shop[(id)]
+                    del load.monster_shop[(id)]
                 else:
                     next
             elif sub_aksi == 'item':
@@ -189,7 +189,7 @@ def shop_management():
                 confirm = input('Apakah anda yakin ingin menghapus Item dari shop (y/n)? ')
                 
                 if confirm == 'y':
-                    del F14_Load.item_shop[(id)]
+                    del load.item_shop[(id)]
                 else:
                     next
         
