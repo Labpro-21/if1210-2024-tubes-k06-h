@@ -64,8 +64,8 @@ def shop_currency(data, user_id):
             }
             user_item.append(user_item_i)
     
-    username = user[user_id][1]
-    oc = user[user_id][4] 
+    username = user[user_id+1][1]
+    oc = user[user_id+1][4] 
 
     user_inventory = {
         "id" : user_id,
@@ -82,6 +82,7 @@ def shop_currency(data, user_id):
     for i in range (1, len(monster_shop)):
         popped_monster_shop.append(i)
         id = monster_shop[i][0]
+        print(monster[id])
         stock = monster_shop[i][1]
         price = monster_shop[i][2]
         type_ = monster[id][1]
@@ -105,17 +106,18 @@ def shop_currency(data, user_id):
     display_item = []
     for i in range (1, len(item_shop)):
         popped_item_shop.append(i)
-        id = i
-        type_ = item_shop[i][0]
-        stock = item_shop[i][1]
-        price = item_shop[i][2]
-        display_item_i = {
-            "id" : id,
-            "type" : type_,
-            "stock" : stock,
-            "price" : price
-        }
-        display_item.append(display_item_i)
+        id = i-1
+        if id != 0:
+            type_ = item_shop[i-1][0]
+            stock = item_shop[i-1][1]
+            price = item_shop[i-1][2]
+            display_item_i = {
+                "id" : id,
+                "type" : type_,
+                "stock" : stock,
+                "price" : price
+            }
+            display_item.append(display_item_i)
     # {AKHIR DISPLAY ITEM THINGS}
 
     # {MULAI PROGRAM}
@@ -173,7 +175,7 @@ def shop_currency(data, user_id):
                 id_item_dibeli = int(input("Masukkan id potion: "))
                 jumlah_potion = int(input("Masukkan jumlah: "))
                 item_dibeli = display_item[id_item_dibeli - 1]
-                if item_dibeli['price'] * jumlah_potion > user_inventory['oc']:
+                if int(item_dibeli['price']) * jumlah_potion > int(user_inventory['oc']):
                     print("OC-mu tidak cukup.")
                 else:
                     print(f"Berhasil membeli item: {jumlah_potion} {item_dibeli['type']}. Item sudah masuk ke inventory-mu!")
@@ -212,7 +214,6 @@ def shop_currency(data, user_id):
         item_shop.pop(i)
 
     # {ITEM INVENTORY}
-    print(user_inventory['user_item'])
     for i in range (len(user_inventory['user_item'])):
         display_item_i = []
         display_item_i.append(user_id)
